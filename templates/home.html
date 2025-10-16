@@ -3,39 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <title>Boston House Price Prediction</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
     <div class="container">
-        <h1>🏡 Boston House Price Prediction</h1>
-        <p class="subtitle">Enter the details below to estimate the house price</p>
+        <div class="header">
+            <h1>🏛️ Boston House Price Prediction</h1>
+            <p>Predict the median value of homes using 13 key housing factors.</p>
+        </div>
 
-        <form action="/predict" method="post" class="form-box">
-            <div class="input-grid">
-                <input type="text" name="CRIM" placeholder="CRIM" required>
-                <input type="text" name="ZN" placeholder="ZN" required>
-                <input type="text" name="INDUS" placeholder="INDUS" required>
-                <input type="text" name="CHAS" placeholder="CHAS" required>
-                <input type="text" name="NOX" placeholder="NOX" required>
-                <input type="text" name="RM" placeholder="RM" required>
-                <input type="text" name="Age" placeholder="Age" required>
-                <input type="text" name="DIS" placeholder="DIS" required>
-                <input type="text" name="RAD" placeholder="RAD" required>
-                <input type="text" name="TAX" placeholder="TAX" required>
-                <input type="text" name="PTRATIO" placeholder="PTRATIO" required>
-                <input type="text" name="B" placeholder="B" required>
-                <input type="text" name="LSTAT" placeholder="LSTAT" required>
+        <div class="main-content">
+            <!-- Form Section -->
+            <div class="form-section">
+                <h2>Enter Housing Details</h2>
+                <form action="/predict" method="post" class="prediction-form">
+                    <div class="form-grid">
+                        <input type="text" name="CRIM" placeholder="CRIM (Crime Rate)" required>
+                        <input type="text" name="ZN" placeholder="ZN (Residential Land %)" required>
+                        <input type="text" name="INDUS" placeholder="INDUS (Non-retail Acres %)" required>
+                        <input type="text" name="CHAS" placeholder="CHAS (1 if River, else 0)" required>
+                        <input type="text" name="NOX" placeholder="NOX (Nitric Oxides Conc.)" required>
+                        <input type="text" name="RM" placeholder="RM (Avg. Rooms per Dwelling)" required>
+                        <input type="text" name="Age" placeholder="AGE (% Built Before 1940)" required>
+                        <input type="text" name="DIS" placeholder="DIS (Distance to Employment)" required>
+                        <input type="text" name="RAD" placeholder="RAD (Access to Highways)" required>
+                        <input type="text" name="TAX" placeholder="TAX (Property Tax Rate)" required>
+                        <input type="text" name="PTRATIO" placeholder="PTRATIO (Pupil-Teacher Ratio)" required>
+                        <input type="text" name="B" placeholder="B (1000(Bk - 0.63)^2)" required>
+                        <input type="text" name="LSTAT" placeholder="LSTAT (% Lower Status)" required>
+                    </div>
+
+                    <button type="submit" class="btn">Predict</button>
+                </form>
+
+                {% if prediction_text %}
+                <div class="prediction-box">
+                    <h3>{{ prediction_text }}</h3>
+                </div>
+                {% endif %}
             </div>
 
-            <button type="submit" class="btn">Predict</button>
-        </form>
-
-        {% if prediction_text %}
-        <div class="result-box">
-            <h2>{{ prediction_text }}</h2>
+            <!-- Info Section -->
+            <div class="info-section">
+                <h2>Variable Descriptions</h2>
+                <ul>
+                    <li><strong>CRIM:</strong> Per capita crime rate by town</li>
+                    <li><strong>ZN:</strong> Residential land zoned for lots over 25,000 sq.ft.</li>
+                    <li><strong>INDUS:</strong> Non-retail business acres per town</li>
+                    <li><strong>CHAS:</strong> Charles River dummy variable (1 = bounds river)</li>
+                    <li><strong>NOX:</strong> Nitric oxides concentration (parts per 10 million)</li>
+                    <li><strong>RM:</strong> Average number of rooms per dwelling</li>
+                    <li><strong>AGE:</strong> Owner-occupied units built prior to 1940 (%)</li>
+                    <li><strong>DIS:</strong> Weighted distance to employment centers</li>
+                    <li><strong>RAD:</strong> Accessibility to radial highways</li>
+                    <li><strong>TAX:</strong> Full-value property-tax rate per $10,000</li>
+                    <li><strong>PTRATIO:</strong> Pupil-teacher ratio by town</li>
+                    <li><strong>B:</strong> 1000(Bk - 0.63)² (Bk = proportion of Black population)</li>
+                    <li><strong>LSTAT:</strong> % lower status of the population</li>
+                    <li><strong>MEDV:</strong> Median home value in $1000s</li>
+                </ul>
+            </div>
         </div>
-        {% endif %}
     </div>
 </body>
 </html>
