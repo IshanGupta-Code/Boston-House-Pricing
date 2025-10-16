@@ -106,9 +106,21 @@ Assuming there is an API endpoint `/predict` (POST), a JSON request body might l
 
 ```json
 {
-  "feature1": value1,
-  "feature2": value2,
-  ...
+    "data": {
+        "CRIM": 0.00632,
+        "ZN": 18.0,
+        "INDUS": 2.31,
+        "CHAS": 0.0,
+        "NOX": 0.538,
+        "RM": 6.575,
+        "AGE": 65.2,
+        "DIS": 4.0900,
+        "RAD": 1.0,
+        "TAX": 296,
+        "PTRATIO": 15.3,
+        "B": 396.90,
+        "LSTAT": 4.98
+    }
 }
 ```
 
@@ -125,7 +137,7 @@ The response might return:
 ## 🧪 Testing & Future Work
 
 * Add unit tests for the prediction API and preprocessing steps.
-* Try more advanced regression / ensemble models (e.g., RandomForest, XGBoost) for better accuracy.
+* Try more advanced regression/ensemble models (e.g., RandomForest, XGBoost) for better accuracy.
 * Add more input validation and error handling.
 * Enhance UI/UX with charts or feature importance visualizations.
 * Add CI/CD and automated deployment.
