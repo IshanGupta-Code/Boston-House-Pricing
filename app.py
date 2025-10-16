@@ -25,7 +25,10 @@ def predict_api():
 
 @app.route('/predict',methods=['POST'])
 def predict():
-    data=[float(x) for x in request.form.values()]
+    try:
+        data = [float(str(x).strip()) for x in request.form.values()]
+    except ValueError:
+        return render_template("home.html", prediction_text="⚠️ Please enter valid numeric values only.")
     final_input=scalar.transform(np.array(data).reshape(1,-1))
     print(final_input)
     output=regmodel.predict(final_input)[0]
