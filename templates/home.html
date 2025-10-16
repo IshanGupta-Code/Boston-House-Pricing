@@ -1,49 +1,41 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ML API</title>
-    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <title>Boston House Price Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/style.css">
-
 </head>
-
 <body>
-    <div class="login">
-        <h1>Boston House Price Prediction</h1>
+    <div class="container">
+        <h1>🏡 Boston House Price Prediction</h1>
+        <p class="subtitle">Enter the details below to estimate the house price</p>
 
-        <!-- Main Input For Receiving Query to our ML -->
-        <form action="/predict" method="post">
-            <input type="text" name="CRIM" placeholder="CRIM" required="required" /><br>
-            <input type="text" name="ZN" placeholder="ZN" required="required" /><br>
-            <input type="text" name="INDUS" placeholder="INDUS" required="required" /><br>
-            <input type="text" name="CHAS" placeholder="CHAS" required="required" /><br>
-            <input type="text" name="NOX" placeholder="NOX" required="required" /><br>
-            <input type="text" name="RM" placeholder="RM" required="required" /><br>
-            <input type="text" name="Age" placeholder="Age" required="required" /><br>
-            <input type="text" name="DIS" placeholder="DIS" required="required" /><br>
-            <input type="text" name="RAD" placeholder="RAD" required="required" /><br>
-            <input type="text" name="TAX" placeholder="TAX" required="required" /><br>
-            <input type="text" name="PTRATIO" placeholder="PTRATIO" required="required" /><br>
-            <input type="text" name="B" placeholder="B" required="required" /><br>
-            <input type="text" name="LSTAT" placeholder="LSTAT" required="required" /><br>
+        <form action="/predict" method="post" class="form-box">
+            <div class="input-grid">
+                <input type="text" name="CRIM" placeholder="CRIM" required>
+                <input type="text" name="ZN" placeholder="ZN" required>
+                <input type="text" name="INDUS" placeholder="INDUS" required>
+                <input type="text" name="CHAS" placeholder="CHAS" required>
+                <input type="text" name="NOX" placeholder="NOX" required>
+                <input type="text" name="RM" placeholder="RM" required>
+                <input type="text" name="Age" placeholder="Age" required>
+                <input type="text" name="DIS" placeholder="DIS" required>
+                <input type="text" name="RAD" placeholder="RAD" required>
+                <input type="text" name="TAX" placeholder="TAX" required>
+                <input type="text" name="PTRATIO" placeholder="PTRATIO" required>
+                <input type="text" name="B" placeholder="B" required>
+                <input type="text" name="LSTAT" placeholder="LSTAT" required>
+            </div>
 
-
-
-            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+            <button type="submit" class="btn">Predict</button>
         </form>
 
-        <br>
-        <br>
-
-
+        {% if prediction_text %}
+        <div class="result-box">
+            <h2>{{ prediction_text }}</h2>
+        </div>
+        {% endif %}
     </div>
-    {{prediction_text}}
-
 </body>
-
 </html>
